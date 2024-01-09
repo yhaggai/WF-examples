@@ -1,9 +1,9 @@
 on: [pull_request]
 permissions:
-  contents: read
-  checks: write
-  actions: write
-  statuses: write
+      checks: write
+      contents: write
+      pull-requests: write
+      statuses: write
 
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
           npx snyk code test --sarif-file-output=/home/runner/report.json ./
           
         shell: bash -l {0}
-      - name: Mobb action step
+      - name: Run Mobb on the findings and get fixes
         if: failure()
         uses: mobb-dev/action@v1
         with:
